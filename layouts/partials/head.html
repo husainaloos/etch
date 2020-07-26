@@ -24,6 +24,8 @@
         {{ $resources = $resources | append (resources.Get "css/syntax.css") -}}
     {{ end -}}
 
+    {{ if .Params.katex}}{{ partial "katex.html" . }}{{ end }}
+
     {{ $css := $resources | resources.Concat "css/style.css" | minify }}
     {{ printf `<link rel="stylesheet" href="%s">` $css.RelPermalink | safeHTML }}
 
